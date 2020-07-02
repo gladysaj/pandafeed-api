@@ -18,8 +18,13 @@ const userSchema = new Schema ( {
   profile_picture: {
     type: String,
   }, 
+  company_name: {
+    type: Schema.Types.ObjectId,
+    ref: "Company",
+    required: [true, "You must belong to a company"]
+  }
 }, 
  { timestamps: true }
 );
 
-module.exports = model("User", userSchema);
+module.exports = model("User", userSchema)
