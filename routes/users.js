@@ -5,9 +5,8 @@ const jwt = require("jsonwebtoken");
 
 const User = require("../models/User");
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.post('/signup', (req, res) => {
+  const { password, }
 });
 
 module.exports = router;

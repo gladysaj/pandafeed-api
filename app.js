@@ -28,7 +28,7 @@ const app = express();
 
 app.use(
     cors({
-        origin: ["http://localhost:3001"],
+        origin: ["http://localhost:3000"],
         credentials: true,
     })
  );
@@ -40,8 +40,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 const usersRouter = require('./routes/users');
-const indexRouter = require('./routes/index');
+
 app.use('/users', usersRouter);
-app.use('/', indexRouter);
+
 
 module.exports = app;
