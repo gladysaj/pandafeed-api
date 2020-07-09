@@ -12,10 +12,10 @@ const companySchema = new Schema ({
     type: String,
     minlength: [20, "Description must be min 20 characters"],
   },
-  email: {
+  user: {
     type: Schema.Types.ObjectId,
     ref: "User",
-    required: [true, "You must have a valid email"]
+    required: [true, "You must have a valid user"]
   }
 });
 

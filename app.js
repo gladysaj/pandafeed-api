@@ -39,8 +39,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const usersRouter = require('./routes/users');
-
+const usersRouter = require('./routes/user');
+const companyRouter = require('./routes/company');
+const changelogRouter = require('./routes/changelog');
 app.use('/api/', usersRouter);
+app.use('/api/', companyRouter);
+app.use('/api/', changelogRouter);
 
 module.exports = app;

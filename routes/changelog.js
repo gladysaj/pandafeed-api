@@ -1,12 +1,14 @@
 const { Router } = require("express");
 const router = Router();
 
-const Board =  require("../models/Board");
+const Changelog =  require("../models/Changelog");
 
 router.get("/", (req, res) => {
-    Board.find()
+  Changelog.find()
     .then((result) => {
       res.status(200).json({ results });
     })
     .catch(err => res.status(400).json(err));
 });
+
+module.exports = router;
