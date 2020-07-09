@@ -17,6 +17,8 @@ const companySchema = new Schema ({
     ref: "User",
     required: [true, "You must have a valid user"]
   }
-});
+ },
+ { timestamps: true }
+);
 
 module.exports = model("Company", companySchema);

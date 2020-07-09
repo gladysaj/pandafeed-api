@@ -1,7 +1,8 @@
 const { Router } = require("express");
 const router = Router();
-const Company = require("../models/Company");
 const { veryToken } = require("../utils/auth");
+
+const Company = require("../models/Company");
 
 // Get my company
 router.get("/my-company", veryToken, (req, res) => {
