@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const boardSchema = new Schema ( {
+const changelogSchema = new Schema ( {
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",
@@ -32,4 +32,4 @@ const boardSchema = new Schema ( {
 { timestamps: true }
 );
 
-module.exports = model("Board", boardSchema);
+module.exports = model("Changelog", changelogSchema);
