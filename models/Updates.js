@@ -19,7 +19,7 @@ const updatesSchema = new Schema ( {
     required: [true, "You must add a version number"]
   }
 }, 
- {timestamps: true}
+ { timestamps: true }
 )
 
 module.exports = model("Updates", updatesSchema);

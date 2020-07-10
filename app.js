@@ -42,8 +42,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 const usersRouter = require('./routes/user');
 const companyRouter = require('./routes/company');
 const changelogRouter = require('./routes/changelog');
+const updatesRouter = require('./routes/updates');
 app.use('/api/', usersRouter);
 app.use('/api/', companyRouter);
 app.use('/api/', changelogRouter);
+app.use('/api/', updatesRouter);
 
 module.exports = app;
