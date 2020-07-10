@@ -4,7 +4,7 @@ const changelogSchema = new Schema ( {
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",
-    required: [true, "You must have a valid user"]
+    required: [true, "You must have a user"]
   },
   company: {
     type: Schema.Types.ObjectId,
@@ -13,21 +13,16 @@ const changelogSchema = new Schema ( {
   },
   title: {
     type: String,
+    required: [true, "Title is required"]
   }, 
   description: {
     type: String,
+    required: [true, "Description should be provided"]
   },
-  // comments: {
-  //   type: String,
-  // },
-  // votes: {
-  //   type: Number,
-  // },
-  // status: {
-  //   type: String,
-  //   enum: ["Open", "Closed"],
-  //   default: "Open"
-  // }
+  version: {
+    type: Number,
+    required: [true, "You must add the version number"]
+  }
 },
 { timestamps: true }
 );
