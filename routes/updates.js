@@ -20,22 +20,22 @@ router.post("/updates-post", veryToken, (req, res) => {
   const { _id: userId } = req.user;
   const company = { ...req.body};
   Changelog.findOne({ _id: company.changelog, user: userId }).then(product => {
-    let {version} = product;
-      if(company.version_update > company.version){
+    let { version } = product;
+      if(company.version_update > version){
+        Changelog.findByIdAndUpdate(product._id, {version: company.version_update },{ new: true })
+       .then(res => {} ).catch(err=>{})
         //Si la version que mando es superior creo un nuevo post 
         Updates.create(company)
         .then((result) => {
           res.status(200).json({ result });
         })
-        .catch((err) => res.status(400).json(err));
+        .catch(err =>{console.log("error", err); res.status(400).json(err)})
        // Encontrar mi producto y modificarlo
-       Changelog.findByIdAndUpdate(product._id, {...product, version: company.version_update },{ new: true })
-       .then(res => {} ).catch(err=>{})
       } else {
         res.status(400).json({msg: "You need to add a new version"})
       }
 
-  }).catch((err) => res.status(400).json(err));
+  }).catch(err =>{console.log("error2", err); res.status(400).json(err)})
  
 });
 
