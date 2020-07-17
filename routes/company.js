@@ -5,7 +5,7 @@ const { veryToken } = require("../utils/auth");
 const Company = require("../models/Company");
 
 // Get my company
-router.get("/my-company", veryToken, (req, res) => {
+router.get("/my-companies", veryToken, (req, res) => {
   const { _id: userId } = req.user;
   Company.find({ user: { $eq: userId } })
     .then((company) => {
@@ -16,8 +16,9 @@ router.get("/my-company", veryToken, (req, res) => {
 
 // Create your company if you have a user
 router.post("/create-company", veryToken, (req, res) => {
-  const company = { ...req.body};
-  Company.create(company)
+  const { _id: userId } = req.user;
+  const company = { ...req.body };
+  Company.create({ ...company, user: userId })
     .then((result) => {
       res.status(200).json({ result });
     })

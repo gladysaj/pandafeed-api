@@ -5,8 +5,15 @@ const jwt = require("jsonwebtoken");
 
 const User = require("../models/User");
 
-router.post("/signup", (req, res) => {
+router.post("/signup", async (req, res) => {
   const { password, ...userValues } = req.body;
+
+  const found = await User.find({ email: userValues.email }).count();
+
+  if (found >= 1) {
+    return res.status(401).json({ message: "Email is already in use" });
+  }
+
   bcrypt.hash(password, 10).then((hashedPass) => {
     const user = { ...userValues, password: hashedPass };
     User.create(user)
