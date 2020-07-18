@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const User = require("../models/User");
+const Company = require("../models/Company");
 
 router.post("/signup", async (req, res) => {
   const { password, ...userValues } = req.body;
@@ -17,10 +18,11 @@ router.post("/signup", async (req, res) => {
   bcrypt.hash(password, 10).then((hashedPass) => {
     const user = { ...userValues, password: hashedPass };
     User.create(user)
-      .then(() => {
-        res.status(200).json({ message: "User has been created" });
-      })
-      .catch((err) => res.status(400).json(err));
+      .then((response) => {
+        Company.create({ companyName: response.company, user: response._id }).then(() => {
+          res.status(200).json({ message: "User has been created" });
+        }).catch(err => res.status(400).json(err));
+      }).catch((err) => res.status(400).json(err));
   });
 });
 

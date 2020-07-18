@@ -38,10 +38,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 const usersRouter = require('./routes/user');
 const companyRouter = require('./routes/company');
 const changelogRouter = require('./routes/changelog');
-const updatesRouter = require('./routes/updates');
+const updatesRouter = require('./routes/update');
+const boardRouter = require('./routes/board');
+
 app.use('/api/', usersRouter);
 app.use('/api/', companyRouter);
 app.use('/api/', changelogRouter);
 app.use('/api/', updatesRouter);
+app.use('/api/', boardRouter);
 
 module.exports = app;

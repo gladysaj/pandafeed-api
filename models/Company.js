@@ -9,12 +9,12 @@ const companySchema = new Schema ({
       type: String,
       // required: [true, "You need to add an image"]
     }, 
-    description: {
-      type: String,
-      required: [true, "You need to add a description"],
-      minlength: [20, "Description must be min 20 characters"],
-      maxlength: [140, "Description must be max 140 characters"],
-    },
+    // description: {
+    //   type: String,
+    //   required: [true, "You need to add a description"],
+    //   minlength: [20, "Description must be min 20 characters"],
+    //   maxlength: [140, "Description must be max 140 characters"],
+    // },
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",

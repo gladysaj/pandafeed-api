@@ -1,10 +1,10 @@
 const { Schema, model } = require("mongoose");
 
 const updateSchema = new Schema ({
-    changelog: {
+    company: {
       type: Schema.Types.ObjectId,
-      ref: "Changelog",
-      required: [true, "You must have a changelog"]
+      ref: "Company",
+      required: [true, "You must have a company"]
     },
     title: {
       type: String,
