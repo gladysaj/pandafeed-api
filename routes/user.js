@@ -6,18 +6,28 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const Company = require("../models/Company");
 
+const getCompanyUrl = (company) => {
+  return company.toLowerCase().trim().split(' ').join('-');
+}
+
 router.post("/signup", async (req, res) => {
   const { password, ...userValues } = req.body;
 
-  const found = await User.find({ email: userValues.email }).count();
+  const foundEmail = await User.find({ email: userValues.email }).count();
+  const foundCompany = await Company.find({ companyName: getCompanyUrl(userValues.company) }).count();
 
-  if (found >= 1) {
+  if (foundEmail >= 1) {
     return res.status(401).json({ message: "Email is already in use" });
+  }
+  if (foundCompany >= 1) {
+    return res.status(401).json({ message: "Company is already in use" });
   }
 
   bcrypt.hash(password, 10).then((hashedPass) => {
     const user = { ...userValues, password: hashedPass };
-    User.create(user)
+    const company = getCompanyUrl(userValues.company);
+
+    User.create({ ...user, company })
       .then((response) => {
         Company.create({ companyName: response.company, user: response._id }).then(() => {
           res.status(200).json({ message: "User has been created" });
