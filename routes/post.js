@@ -17,4 +17,16 @@ router.post("/create-post", veryToken, async (req, res) => {
   }
 });
 
+// Get board posts 
+router.get("/get-posts/:boardId", async (req, res) => {
+  const { boardId } = req.params;
+
+   try {
+    const posts = await Post.find({ board: boardId });
+     res.status(200).json(posts);
+   } catch(error) {
+     res.status(400).json(error);
+   }
+})
+
 module.exports = router;
