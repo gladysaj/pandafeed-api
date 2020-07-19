@@ -40,11 +40,13 @@ const companyRouter = require('./routes/company');
 const changelogRouter = require('./routes/changelog');
 const updatesRouter = require('./routes/update');
 const boardRouter = require('./routes/board');
+const postRouter = require('./routes/post');
 
 app.use('/api/', usersRouter);
 app.use('/api/', companyRouter);
 app.use('/api/', changelogRouter);
 app.use('/api/', updatesRouter);
 app.use('/api/', boardRouter);
+app.use('/api/', postRouter);
 
 module.exports = app;
