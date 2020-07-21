@@ -12,10 +12,13 @@ const cors = require("cors");
 // Config mongoose
 const mongoose = require("mongoose");
 
+const db = process.env.DB || 'mongodb://localhost/panda-api';
+
 mongoose
- .connect(process.env.DB, {
-     useNewUrlParser: true, 
-     useUnifiedTopology: true,
+ .connect(db, {
+    useCreateIndex: true,
+    useNewUrlParser: true, 
+    useUnifiedTopology: true,
  })
  .then((x) => {
      console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`);
