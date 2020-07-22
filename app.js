@@ -29,8 +29,7 @@ mongoose
 
 const app = express();
 
-app.use(cors({ origin: 'http://localhost:4444', credentials: true }));
-
+app.use(cors({ origin: ['http://localhost:4444', 'https://pandafeed.netlify.app', 'https://pandafeed.co'], credentials: true }));
 
 app.use(logger('dev'));
 app.use(express.json());
