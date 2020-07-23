@@ -3,6 +3,7 @@ const router = Router();
 
 const Post = require('../models/Post');
 const { veryToken } = require("../utils/auth");
+const { findByIdAndUpdate } = require("../models/Post");
 
 // Create your post if you have a user
 router.post("/create-post", veryToken, async (req, res) => {
@@ -27,6 +28,22 @@ router.get("/get-posts/:boardId", async (req, res) => {
    } catch(error) {
      res.status(400).json(error);
    }
+})
+
+// Upvote a post 
+router.post("/upvote-post", veryToken, async (req, res) => {
+  const { postId } = req.body;
+
+  try {
+    const post = await Post.findByIdAndUpdate(
+      postId,
+    {
+      $inc: { upvotes: 1 }
+    });
+    res.status(200).json(post);
+  } catch (error) {
+    res.status(400).json(error);
+  }
 })
 
 module.exports = router;
