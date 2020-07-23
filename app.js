@@ -43,6 +43,7 @@ const changelogRouter = require('./routes/changelog');
 const updatesRouter = require('./routes/update');
 const boardRouter = require('./routes/board');
 const postRouter = require('./routes/post');
+const checkoutRouter = require('./routes/checkout');
 
 app.use('/api/', usersRouter);
 app.use('/api/', companyRouter);
@@ -50,5 +51,6 @@ app.use('/api/', changelogRouter);
 app.use('/api/', updatesRouter);
 app.use('/api/', boardRouter);
 app.use('/api/', postRouter);
+app.use('/api/', checkoutRouter);
 
 module.exports = app;
