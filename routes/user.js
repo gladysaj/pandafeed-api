@@ -55,8 +55,9 @@ router.post("/login", (req, res) => {
         return res
           .cookie("token", token, {
             expires: new Date(Date.now() + 86400000),
-            secure: false,
+            secure: process.env.NODE_ENV === 'production' ? true : false,
             httpOnly: true,
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : true,
           })
           .json({ user: userWithoutPass });
       }
