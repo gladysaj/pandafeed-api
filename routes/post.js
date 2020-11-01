@@ -33,8 +33,15 @@ router.get("/get-posts/:boardId", async (req, res) => {
 // Upvote a post 
 router.post("/upvote-post", veryToken, async (req, res) => {
   const { postId } = req.body;
+  const { _id: userId } = req.user;
 
   try {
+    const { user: ownerId } = await Post.findById(postId);
+
+    if (String(ownerId) === String(userId)) {
+      throw "You can't upvote your own post!"
+    }
+
     const post = await Post.findByIdAndUpdate(
       postId,
     {
